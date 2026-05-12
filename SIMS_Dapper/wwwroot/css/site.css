@@ -1,0 +1,16 @@
+
+body {
+    background: #f5f7fb;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.title {
+    background: linear-gradient(90deg,#4e54c8,#8f94fb);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+}

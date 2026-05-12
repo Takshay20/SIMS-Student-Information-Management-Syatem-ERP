@@ -1,0 +1,36 @@
+﻿@model SIMS_Dapper.Models.DashboardStats
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card-box">
+            <h4>Total Students</h4>
+            <h2>@Model.TotalStudents</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card-box">
+            <h4>Total Faculty</h4>
+            <h2>@Model.TotalFaculty</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card-box">
+            <h4>Total Departments</h4>
+            <h2>@Model.TotalDepartments</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card-box">
+            <h4>Pending Grievances</h4>
+            <h2>@Model.PendingGrievances</h2>
+        </div>
+    </div>
+</div>

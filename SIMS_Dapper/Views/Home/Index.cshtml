@@ -1,0 +1,199 @@
+﻿@model SIMS_Dapper.Models.Student
+
+@{
+    var students = ViewBag.Students as List<SIMS_Dapper.Models.Student>;
+}
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container mt-5">
+
+    <div class="title mb-4">
+        <h2 class="text-center">
+            Student Registration CRUD
+        </h2>
+    </div>
+
+    <div class="row">
+
+   
+        <div class="col-md-4">
+
+            <div class="card p-4">
+
+                <form asp-action="@(Model.StudentId == 0 ? "Save" : "Edit")" asp-controller="Home" id="studentForm">
+
+                    <input type="hidden" asp-for="StudentId" />
+
+                    <div class="mb-3">
+                        <label>Enrollment No.</label>
+                        <input asp-for="EnrollmentNo"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Roll No.</label>
+                        <input asp-for="RollNo"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Student Name</label>
+                        <input asp-for="StudentName"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Father Name</label>
+                        <input asp-for="FatherName"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Mother Name</label>
+                        <input asp-for="MotherName"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input asp-for="Email"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Phone</label>
+                        <input asp-for="Phone"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Gender</label>
+
+                        <select asp-for="Gender"
+                                class="form-select">
+
+                            <option value="">Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Course</label>
+
+                        <select asp-for="CourseId"
+                                asp-items="ViewBag.Courses"
+                                class="form-select"
+                                id="CourseId">
+
+                            <option value="">Select Course</option>
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Branch</label>
+
+                        <select asp-for="BranchId"
+                                class="form-select"
+                                id="BranchId"
+                                data-selected="@Model.BranchId">
+
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Semester</label>
+                        <input asp-for="Semester"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Address</label>
+
+                        <textarea asp-for="Address"
+                                  class="form-control"></textarea>
+                    </div>
+
+                
+
+                    <button type="submit"
+                            class="btn btn-primary w-100">
+
+                        @(Model.StudentId == 0 ? "Save Student" : "Update Student")
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="col-md-8">
+
+            <div class="card p-4">
+
+                <table class="table table-borderd table-hover">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Roll No</th>
+                           
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in students)
+                        {
+                            <tr>
+                                <td>@item.RollNo</td>
+                                <td>@item.StudentName</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.StudentName</td>
+                                <td>@item.BranchId</td>
+
+                                <td>
+
+                                    <a asp-controller="Home"
+                                       asp-action="Index"
+                                       asp-route-id="@item.StudentId"
+                                       class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <a href="javascript:void(0)"
+                                       class="btn btn-danger btn-sm deleteStudent"
+                                       data-id="@item.StudentId">
+                                        Delete
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

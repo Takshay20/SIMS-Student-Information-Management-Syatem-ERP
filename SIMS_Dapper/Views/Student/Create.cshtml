@@ -1,0 +1,105 @@
+﻿@model SIMS_Dapper.Models.Student
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Add Student";
+}
+
+<h2>Add Student</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+            <label>Name</label>
+            <input asp-for="StudentName" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Father Name</label>
+            <input asp-for="FatherName" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Mother Name</label>
+            <input asp-for="MotherName" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Enrollment No</label>
+            <input asp-for="EnrollmentNo" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Roll No</label>
+            <input asp-for="RollNo" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Phone</label>
+            <input asp-for="Phone" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Gender</label>
+            <input asp-for="Gender" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>DOB</label>
+            <input asp-for="DOB" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>User Id</label>
+            <input asp-for="UserId" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Parent Id</label>
+            <input asp-for="ParentId" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Course Id</label>
+            <input asp-for="CourseId" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Branch Id</label>
+            <input asp-for="BranchId" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Section Id</label>
+            <input asp-for="SectionId" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Semester</label>
+            <input asp-for="Semester" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Session</label>
+            <input asp-for="Session" class="form-control" />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label>Address</label>
+            <textarea asp-for="Address" class="form-control"></textarea>
+        </div>
+
+    </div>
+
+    <button class="btn btn-success">
+        Save Student
+    </button>
+
+</form>

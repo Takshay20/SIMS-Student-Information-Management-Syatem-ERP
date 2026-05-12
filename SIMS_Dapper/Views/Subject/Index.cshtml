@@ -1,0 +1,145 @@
+﻿@model SIMS_Dapper.Models.Subject
+
+@{
+    var subjects = ViewBag.Subjects as List<SIMS_Dapper.Models.Subject>;
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container mt-5">
+
+    <div class="title mb-4">
+        <h2 class="text-center">
+            Subject Management
+        </h2>
+    </div>
+
+    <div class="row">
+
+        <!-- FORM -->
+        <div class="col-md-4">
+            <div class="card p-4">
+
+                <form asp-action="@(Model.SubjectId == 0 ? "Save" : "Edit")"
+                      asp-controller="Subject"
+                      id="subjectForm">
+
+                    <input type="hidden" asp-for="SubjectId" />
+
+                    <div class="mb-3">
+                        <label>Subject Name</label>
+                        <input asp-for="SubjectName" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Subject Code</label>
+                        <input asp-for="SubjectCode" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Course</label>
+                        <select asp-for="CourseId"
+                                asp-items="ViewBag.Courses"
+                                class="form-select"
+                                id="SubjectCourseId">
+                            <option value="">Select Course</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Branch</label>
+                        <select asp-for="BranchId"
+                                class="form-select"
+                                id="SubjectBranchId"
+                                data-selected="@Model.BranchId">
+                            <option value="">Select Branch</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Semester</label>
+                        <select asp-for="Semester" class="form-select">
+                            <option value="">Select Semester</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Subject Type</label>
+                        <select asp-for="SubjectType" class="form-select">
+                            <option value="">Select Type</option>
+                            <option>Theory</option>
+                            <option>Practical</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        @(Model.SubjectId == 0 ? "Save Subject" : "Update Subject")
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="col-md-8">
+            <div class="card p-4">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Sem</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in subjects)
+                        {
+                            <tr>
+                                <td>@item.SubjectCode</td>
+                                <td>@item.SubjectName</td>
+                                <td>@item.CourseName</td>
+                                <td>@item.BranchName</td>
+                                <td>@item.Semester</td>
+                                <td>@item.SubjectType</td>
+
+                                <td>
+                                    <a asp-controller="Subject"
+                                       asp-action="Index"
+                                       asp-route-id="@item.SubjectId"
+                                       class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm deleteSubject"
+                                            data-id="@item.SubjectId">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>

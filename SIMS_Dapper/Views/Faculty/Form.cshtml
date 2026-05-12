@@ -1,0 +1,68 @@
+﻿@model SIMS_Dapper.Models.ViewModels.FacultyFormViewModel
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    var isEdit = Model.Faculty.FacultyId > 0;
+
+    ViewData["Title"] = isEdit ? "Edit Faculty" : "Add Faculty";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="@(isEdit ? "Edit" : "Create")" method="post">
+
+    <input type="hidden" asp-for="Faculty.FacultyId" />
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+            <label>User</label>
+            <select asp-for="Faculty.UserId"
+                    asp-items="Model.Users"
+                    class="form-control">
+                <option value="">Select User</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Name</label>
+            <input asp-for="Faculty.FacultyName" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Employee Code</label>
+            <input asp-for="Faculty.EmployeeCode" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input asp-for="Faculty.Email" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Phone</label>
+            <input asp-for="Faculty.Phone" class="form-control" />
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Department</label>
+            <select asp-for="Faculty.DepartmentId"
+                    asp-items="Model.Departments"
+                    class="form-control">
+                <option value="">Select Department</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label>Designation</label>
+            <input asp-for="Faculty.Designation" class="form-control" />
+        </div>
+
+    </div>
+
+    <button class="btn btn-success">
+        @(isEdit ? "Update Faculty" : "Save Faculty")
+    </button>
+
+</form>

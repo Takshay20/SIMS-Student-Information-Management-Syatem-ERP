@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SIMS_Dapper.Models.Faculty>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Faculty";
+}
+
+<div class="d-flex justify-content-between mb-3">
+    <h2>Faculty Management</h2>
+
+    <a asp-controller="Faculty"
+       asp-action="Create"
+       class="btn btn-primary">
+        Add Faculty
+    </a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Employee Code</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FacultyName</td>
+                <td>@item.EmployeeCode</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.DepartmentId</td>
+                <td>@item.Designation</td>
+
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@item.FacultyId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.FacultyId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
