@@ -40,8 +40,17 @@
                 <td>@item.Semester</td>
 
                 <td>
-                    <a class="btn btn-warning btn-sm">Edit</a>
-                    <a class="btn btn-danger btn-sm">Delete</a>
+                    <a asp-action="Edit"
+                       asp-route-id="@item.StudentId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.StudentId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
                 </td>
             </tr>
         }

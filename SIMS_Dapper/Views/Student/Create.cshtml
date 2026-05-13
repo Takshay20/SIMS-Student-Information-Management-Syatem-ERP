@@ -7,7 +7,8 @@
 
 <h2>Add Student</h2>
 
-<form asp-action="Create" method="post">
+<form asp-action="@(Model.StudentId > 0 ? "Edit" : "Create")" method="post">
+    <input type="hidden" asp-for="StudentId" />
 
     <div class="row">
 

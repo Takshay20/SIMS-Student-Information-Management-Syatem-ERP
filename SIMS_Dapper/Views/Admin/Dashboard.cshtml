@@ -6,31 +6,133 @@
 }
 
 <div class="row">
-    <div class="col-md-3">
-        <div class="card-box">
-            <h4>Total Students</h4>
-            <h2>@Model.TotalStudents</h2>
-        </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Student" asp-action="Index" style="text-decoration:none;color:inherit;">
+            <div class="card-box">
+                <h4>Total Students</h4>
+                <h2>@Model.TotalStudents</h2>
+            </div>
+        </a>
     </div>
 
-    <div class="col-md-3">
-        <div class="card-box">
-            <h4>Total Faculty</h4>
-            <h2>@Model.TotalFaculty</h2>
-        </div>
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Faculty" asp-action="Index" style="text-decoration:none;color:inherit;">
+            <div class="card-box">
+                <h4>Total Faculty</h4>
+                <h2>@Model.TotalFaculty</h2>
+            </div>
+        </a>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
         <div class="card-box">
             <h4>Total Departments</h4>
             <h2>@Model.TotalDepartments</h2>
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
         <div class="card-box">
             <h4>Pending Grievances</h4>
             <h2>@Model.PendingGrievances</h2>
         </div>
     </div>
+
+</div>
+
+<hr />
+
+<h3 class="mb-4">Quick Access Modules</h3>
+
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Student" asp-action="Index" class="btn btn-primary w-100 p-3">
+            Student Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Faculty" asp-action="Index" class="btn btn-success w-100 p-3">
+            Faculty Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Subject" asp-action="Index" class="btn btn-warning w-100 p-3">
+            Subject Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Attendance"
+           asp-action="AttendanceEntry"
+           class="btn btn-info w-100 p-3">
+            Attendance Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Department" asp-action="Index" class="btn btn-secondary w-100 p-3">
+            Department Management
+        </a>
+    </div>
+
+ 
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Course" asp-action="Index" class="btn btn-dark w-100 p-3">
+            Course Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Branch" asp-action="Index" class="btn btn-warning w-100 p-3">
+            Branch Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a asp-controller="Section" asp-action="Index" class="btn btn-info w-100 p-3">
+            Section Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a href="#" class="btn btn-danger w-100 p-3">
+            Exam & Results
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a href="#" class="btn btn-primary w-100 p-3">
+            Fee & Accounts
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a href="#" class="btn btn-success w-100 p-3">
+            Library Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a href="#" class="btn btn-warning w-100 p-3">
+            Hostel Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a href="#" class="btn btn-info w-100 p-3">
+            Transport Management
+        </a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <a href="#" class="btn btn-dark w-100 p-3">
+            Placement Management
+        </a>
+    </div>
+
 </div>

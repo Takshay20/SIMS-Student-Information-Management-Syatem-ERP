@@ -6,7 +6,7 @@
 
         public int UserId { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         public string StudentName { get; set; }
 

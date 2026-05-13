@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SIMS_Dapper.Models.Section>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Sections";
+}
+
+<h2 class="mb-4">Academic Sections</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Branch</th>
+            <th>Semester</th>
+            <th>Section</th>
+            <th>Capacity</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CourseName</td>
+                <td>@item.BranchName</td>
+                <td>@item.Semester</td>
+                <td>@item.SectionName</td>
+                <td>@item.Capacity</td>
+            </tr>
+        }
+    </tbody>
+</table>

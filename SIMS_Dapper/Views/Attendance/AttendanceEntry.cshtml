@@ -1,0 +1,142 @@
+﻿@model SIMS_Dapper.Models.ViewModels.AttendanceViewModel
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Attendance Entry";
+}
+
+<h2 class="mb-4">Attendance Management</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<form asp-action="SaveAttendance" method="post">
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <label>Subject</label>
+            <select asp-for="Session.SubjectId"
+                    asp-items="Model.Subjects"
+                    class="form-control">
+                <option value="">Select Subject</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Section</label>
+            <select asp-for="Session.SectionId"
+                    asp-items="Model.Sections"
+                    class="form-control"
+                    id="sectionDropdown">
+                <option value="">Select Section</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Date</label>
+            <input asp-for="Session.SessionDate"
+                   type="date"
+                   class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Start Time</label>
+            <input asp-for="Session.StartTime"
+                   type="time"
+                   class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>End Time</label>
+            <input asp-for="Session.EndTime"
+                   type="time"
+                   class="form-control" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label>Topic Covered</label>
+            <input asp-for="Session.TopicCovered"
+                   class="form-control" />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label>Remarks</label>
+            <textarea asp-for="Session.Remarks"
+                      class="form-control"></textarea>
+        </div>
+
+    </div>
+
+    <button type="button"
+            class="btn btn-primary mb-3"
+            onclick="loadStudents()">
+        Load Students
+    </button>
+
+    <table class="table table-bordered" id="studentTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>Enrollment No</th>
+                <th>Student Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentBody">
+        </tbody>
+    </table>
+
+    <button type="submit"
+            class="btn btn-success"
+            id="saveBtn"
+            style="display:none;">
+        Save Attendance
+    </button>
+
+</form>
+
+@section Scripts {
+    <script>
+        function loadStudents() {
+            var sectionId = document.getElementById("sectionDropdown").value;
+
+            if (!sectionId) {
+                alert("Select section first");
+                return;
+            }
+
+            fetch('/Attendance/GetStudents?sectionId=' + sectionId)
+                .then(response => response.json())
+                .then(data => {
+                    let body = document.getElementById("studentBody");
+                    body.innerHTML = "";
+
+                    data.forEach((student, index) => {
+                        body.innerHTML += `
+                            <tr>
+                                <td>${student.enrollmentNo}</td>
+                                <td>${student.studentName}</td>
+
+                                <td>
+                                    <input type="hidden" name="Students[${index}].StudentId" value="${student.studentId}" />
+
+                                    <select name="Students[${index}].Status" class="form-control">
+                                        <option value="Present">Present</option>
+                                        <option value="Absent">Absent</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        `;
+                    });
+
+                    document.getElementById("studentTable").style.display = "table";
+                    document.getElementById("saveBtn").style.display = "block";
+                });
+        }
+    </script>
+}

@@ -31,7 +31,7 @@ namespace SIMS_Dapper.Controllers
             using (var db = Connection)
             {
                 var faculty = db.Query<Faculty>(
-                    "SP_GetAllFaculty",
+                    "sp_GetAllFaculty",
                     commandType: CommandType.StoredProcedure
                 );
 
@@ -45,12 +45,12 @@ namespace SIMS_Dapper.Controllers
             using (var db = Connection)
             {
                 var users = db.Query(
-                    "SP_GetFacultyUsers",
+                    "sp_GetFacultyUsers",
                     commandType: CommandType.StoredProcedure
                 );
 
                 var departments = db.Query(
-                    "SP_GetDepartments",
+                    "sp_GetDepartments",
                     commandType: CommandType.StoredProcedure
                 );
 
@@ -81,7 +81,7 @@ namespace SIMS_Dapper.Controllers
             using (var db = Connection)
             {
                 db.Execute(
-                    "SP_InsertFaculty",
+                    "sp_InsertFaculty",
                     new
                     {
                         model.Faculty.UserId,
@@ -105,18 +105,18 @@ namespace SIMS_Dapper.Controllers
             using (var db = Connection)
             {
                 var faculty = db.QueryFirstOrDefault<Faculty>(
-                    "SP_GetFacultyById",
+                    "sp_GetFacultyById",
                     new { FacultyId = id },
                     commandType: CommandType.StoredProcedure
                 );
 
                 var users = db.Query(
-                    "SP_GetFacultyUsers",
+                    "sp_GetFacultyUsers",
                     commandType: CommandType.StoredProcedure
                 );
 
                 var departments = db.Query(
-                    "SP_GetDepartments",
+                    "sp_GetDepartments",
                     commandType: CommandType.StoredProcedure
                 );
 
@@ -147,7 +147,7 @@ namespace SIMS_Dapper.Controllers
             using (var db = Connection)
             {
                 db.Execute(
-                    "SP_UpdateFaculty",
+                    "sp_UpdateFaculty",
                     new
                     {
                         model.Faculty.FacultyId,
@@ -171,7 +171,7 @@ namespace SIMS_Dapper.Controllers
             using (var db = Connection)
             {
                 db.Execute(
-                    "SP_DeleteFaculty",
+                    "sp_DeleteFaculty",
                     new { FacultyId = id },
                     commandType: CommandType.StoredProcedure
                 );

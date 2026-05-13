@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SIMS_Dapper.Models.Department>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Departments";
+}
+
+<h2 class="mb-4">Academic Departments</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Department Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DepartmentCode</td>
+                <td>@item.DepartmentName</td>
+                <td>
+                    @switch (item.DepartmentCode)
+                    {
+                        case "CSE":
+                            <text>Computer Science Engineering focuses on software development, programming, databases, AI concepts, networking, and modern computing technologies preparing students for technical and innovation-driven careers.</text>
+                            break;
+
+                        case "ECE":
+                            <text>Electronics and Communication Engineering focuses on communication systems, embedded electronics, signal processing, IoT technologies, and hardware-software integration for modern communication infrastructure.</text>
+                            break;
+
+                        case "ME":
+                            <text>Mechanical Engineering covers machine design, thermodynamics, manufacturing systems, robotics, industrial automation, and mechanical problem-solving for engineering industries.</text>
+                            break;
+
+                        case "CE":
+                            <text>Civil Engineering focuses on structural design, construction management, surveying, transportation systems, environmental engineering, and infrastructure development projects.</text>
+                            break;
+
+                        case "MBA":
+                            <text>Management Studies develops leadership, finance, marketing, operations, business strategy, organizational decision-making, and entrepreneurial management skills.</text>
+                            break;
+
+                        case "MCA":
+                            <text>Master of Computer Applications focuses on advanced programming, software engineering, application development, databases, system architecture, and enterprise software solutions.</text>
+                            break;
+
+                        case "COM":
+                            <text>Commerce focuses on accounting, taxation, economics, business law, finance management, and commercial operations essential for business careers.</text>
+                            break;
+
+                        case "FY":
+                            <text>First Year Academic Department manages common foundational academic courses, orientation, and first-year student academic administration before specialization allocation.</text>
+                            break;
+
+                        default:
+                            <text>Academic department responsible for institutional teaching, student management, and academic program coordination.</text>
+                            break;
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
