@@ -1,11 +1,13 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
-using Dapper;
+﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using SIMS_Dapper.Filters;
 using SIMS_Dapper.Models;
+using System.Data;
 
 namespace SIMS_Dapper.Controllers
 {
+    [RoleAuthorize("Admin", "HOD")]
     public class CourseController : Controller
     {
         private readonly IConfiguration _configuration;

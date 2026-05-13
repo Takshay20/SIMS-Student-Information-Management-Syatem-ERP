@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http
 
+@{
+    var role = Context.Session.GetString("RoleName");
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,23 +25,24 @@
             background: #1e293b;
             color: white;
             padding-top: 20px;
+            overflow-y: auto;
         }
 
-        .sidebar h3 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+            .sidebar h3 {
+                text-align: center;
+                margin-bottom: 30px;
+            }
 
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-        }
+            .sidebar a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                padding: 12px 20px;
+            }
 
-        .sidebar a:hover {
-            background: #334155;
-        }
+                .sidebar a:hover {
+                    background: #334155;
+                }
 
         .main {
             margin-left: 250px;
@@ -65,13 +70,66 @@
     <div class="sidebar">
         <h3>SIMS ERP</h3>
 
-        <a href="#">Dashboard</a>
-        <a href="#">Students</a>
-        <a href="#">Faculty</a>
-        <a href="#">Attendance</a>
-        <a href="#">Exams</a>
-        <a href="#">Fees</a>
-        <a href="#">Placements</a>
+        @if (role == "Admin")
+        {
+            <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+            <a asp-controller="Student" asp-action="Index">Students</a>
+            <a asp-controller="Faculty" asp-action="Index">Faculty</a>
+            <a asp-controller="Subject" asp-action="Index">Subjects</a>
+            <a asp-controller="Department" asp-action="Index">Departments</a>
+            <a asp-controller="Course" asp-action="Index">Courses</a>
+            <a asp-controller="Branch" asp-action="Index">Branches</a>
+            <a asp-controller="Section" asp-action="Index">Sections</a>
+            <a asp-controller="Attendance" asp-action="AttendanceEntry">Attendance</a>
+            <a href="#">Exams</a>
+            <a href="#">Fees</a>
+            <a href="#">Placements</a>
+        }
+
+        else if (role == "HOD")
+        {
+            <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+            <a asp-controller="Faculty" asp-action="Index">Faculty</a>
+            <a asp-controller="Student" asp-action="Index">Students</a>
+            <a asp-controller="Attendance" asp-action="AttendanceEntry">Attendance Reports</a>
+            <a href="#">Internal Marks Approval</a>
+        }
+
+        else if (role == "Professor Incharge")
+        {
+            <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+            <a asp-controller="Student" asp-action="Index">Students</a>
+            <a asp-controller="Attendance" asp-action="AttendanceEntry">Attendance</a>
+        }
+
+        else if (role == "Class Coordinator")
+        {
+            <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+            <a asp-controller="Student" asp-action="Index">Students</a>
+            <a asp-controller="Attendance" asp-action="AttendanceEntry">Attendance</a>
+        }
+
+        else if (role == "Faculty")
+        {
+            <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+            <a asp-controller="Attendance" asp-action="AttendanceEntry">Attendance</a>
+            <a href="#">Marks Upload</a>
+            <a href="#">Exam Schedule</a>
+        }
+
+        else if (role == "Student")
+        {
+            <a asp-controller="Student" asp-action="Index">My Profile</a>
+            <a href="#">My Attendance</a>
+            <a href="#">My Results</a>
+        }
+
+        else if (role == "Parent")
+        {
+            <a href="#">Child Attendance</a>
+            <a href="#">Child Results</a>
+            <a href="#">Fee Status</a>
+        }
 
         <a asp-controller="Account" asp-action="Logout">Logout</a>
     </div>

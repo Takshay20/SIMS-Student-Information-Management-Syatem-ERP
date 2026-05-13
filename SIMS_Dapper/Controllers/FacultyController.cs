@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SIMS_Dapper.Models;
 using SIMS_Dapper.Models.ViewModels;
+using SIMS_Dapper.Filters;
 
 namespace SIMS_Dapper.Controllers
 {
+    [RoleAuthorize("Admin", "HOD")]
     public class FacultyController : Controller
     {
         private readonly IConfiguration _configuration;

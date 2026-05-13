@@ -3,11 +3,14 @@
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
     ViewData["Title"] = "Add Student";
+
+    var isEdit = Model != null && Model.StudentId > 0;
 }
 
-<h2>Add Student</h2>
+<h2>@(isEdit ? "Edit Student" : "Add Student")</h2>
 
-<form asp-action="@(Model.StudentId > 0 ? "Edit" : "Create")" method="post">
+<form asp-action="@(isEdit ? "Edit" : "Create")" method="post">
+
     <input type="hidden" asp-for="StudentId" />
 
     <div class="row">
@@ -100,7 +103,7 @@
     </div>
 
     <button class="btn btn-success">
-        Save Student
+        @(isEdit ? "Update Student" : "Save Student")
     </button>
 
 </form>

@@ -3,9 +3,11 @@ using Microsoft.Data.SqlClient;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using SIMS_Dapper.Models;
+using SIMS_Dapper.Filters;
 
 namespace SIMS_Dapper.Controllers
 {
+    [RoleAuthorize("Admin", "Student", "HOD", "Professor Incharge", "Class Coordinator")]
     public class StudentController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -79,7 +81,7 @@ namespace SIMS_Dapper.Controllers
                 );
             }
 
-            return RedirectToAction("Index");
+            return View(new Student());
         }
 
         [HttpGet]

@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
+using SIMS_Dapper.Filters;
 using SIMS_Dapper.Models;
 using System.Data;
-using Dapper;
-using Microsoft.Data.SqlClient;
 
 namespace SIMS_Dapper.Controllers
 {
+    [RoleAuthorize("Admin", "HOD", "Faculty")]
     public class SubjectController : Controller
     {
         private readonly IConfiguration _config;

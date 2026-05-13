@@ -1,13 +1,15 @@
-﻿using System.Data;
-using Microsoft.Data.SqlClient;
-using Dapper;
+﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
+using SIMS_Dapper.Filters;
 using SIMS_Dapper.Models;
 using SIMS_Dapper.Models.ViewModels;
+using System.Data;
 
 namespace SIMS_Dapper.Controllers
 {
+    [RoleAuthorize("Faculty", "Class Coordinator", "Professor Incharge", "HOD")]
     public class AttendanceController : Controller
     {
         private readonly IConfiguration _configuration;
