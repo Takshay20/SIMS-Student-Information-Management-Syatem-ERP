@@ -57,18 +57,28 @@ namespace SIMS_Dapper.Controllers
                 switch (user.RoleName)
                 {
                     case "Admin":
-                    case "Dean":
-                    case "HOD":
-                    case "Professor Incharge":
-                    case "Class Coordinator":
-                    case "Faculty":
                         return RedirectToAction("Dashboard", "Admin");
+
+                    case "HOD":
+                        return RedirectToAction("Dashboard", "Admin");
+
+                    case "Professor Incharge":
+                        return RedirectToAction("Dashboard", "Admin");
+
+                    case "Class Coordinator":
+                        return RedirectToAction("Dashboard", "Admin");
+
+                    case "Faculty":
+                        return RedirectToAction("Index", "Faculty");
 
                     case "Student":
                         return RedirectToAction("Index", "Student");
 
                     case "Parent":
-                        return RedirectToAction("Login");
+                        return RedirectToAction("AccessDenied");
+
+                    case "Dean":
+                        return RedirectToAction("Dashboard", "Admin");
 
                     default:
                         return RedirectToAction("Login");

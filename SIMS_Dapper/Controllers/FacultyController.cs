@@ -9,7 +9,7 @@ using SIMS_Dapper.Filters;
 
 namespace SIMS_Dapper.Controllers
 {
-    [RoleAuthorize("Admin", "HOD")]
+    [RoleAuthorize("Admin", "HOD", "Faculty")]
     public class FacultyController : Controller
     {
         private readonly IConfiguration _configuration;
